@@ -16,7 +16,9 @@ exports.user = function(req, res) {
 
 exports.word = function(req, res) { 
 	var word = req.params.word;
-	var data = {word: word, reply: reply(word)};
-	res.render('word',data);
+	reply.getList(word, function (error, replyString) {
+		var data = {word: word, reply: replyString};
+		res.render('word',data);
+	});
 };
 
