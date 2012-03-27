@@ -10,23 +10,26 @@ module.exports.getList = function (word, callback) {
 			console.log(error);
 			callback(error, null);
 		}
+		var response = [];
 		if (exists === 0) {
 			client.zrevrangebyscore(word.toLowerCase(), '+inf', 0, 'withscores', function(error, result){
-				if (error) {console.log(error);}
-				if (result) {
-					var responseString = "";
-					responseString += "<h1>" + word + "</h1><ul>";
+				if (error) {
+					console.log(error);
+					callback(error, null);
+				}
+				if (typeof result[0] !== 'undefined') {
 					for (var j = 0 ; j < result.length ; j=j+2) {
-						responseString += "<li>" + result[j+1] + " - " + result[j] + "</li>";
+						response.push(result[j+1] + " - " + result[j]);
 					}
-					responseString += "</ul>";
-					callback(null, responseString);	
+					callback(null, response);	
 				} else {
-					callback(null, "<h1>no results yet for" + word + "</h1>");
+					response.push("no results yet for " + word);
+					callback(null, response);
 				}
 			});
 		} else if (exists === 1) {
-			callback(null, "<h1>now tracking" + word + "</h1>");
+			response.push("now tracking " + word);
+			callback(null, response);
 		}
 	});
 	
