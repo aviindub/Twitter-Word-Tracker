@@ -1,3 +1,10 @@
 <h2>START <%= word%></h2>
-<%= reply%>
+<div id=database_results>
+<h1><%= word%></h1>
+<ul>
+<%for (var i=0; i<reply.length; i++) { %>
+	<li><%= reply[i]%></li>
+<% } %>
+</ul>
+</div>
 <h2>FINISH <%= word%></h2>
