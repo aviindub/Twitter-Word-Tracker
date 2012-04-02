@@ -11,7 +11,8 @@ module.exports.getList = function (word, callback) {
 			console.log(error);
 			callback(error, null);
 		}
-		var response = [];
+		var responseScores = [];
+		var responseUrls = [];
 		if (exists === 0) { //if word was already in the set
 			//get list of urls and scores for word
 			client.zrevrangebyscore(word.toLowerCase(), '+inf', 0, 'withscores', function(error, result){
@@ -22,16 +23,18 @@ module.exports.getList = function (word, callback) {
 				//if at least one result returned
 				if (typeof result[0] !== 'undefined') {
 					for (var j = 0 ; j < result.length ; j=j+2) {
-						response.push(result[j+1] + " - " + result[j]);
+						responseUrls.push(result[j]);
+						responseScores.push(result[j+1]);
 					}
+					var response = {responseUrls: responseUrls, responseScores: responseScores};
 					callback(null, response);	
 				} else { //else if no results returned
-					response.push("no results yet for " + word);
+					var response = {altResponse: "no results yet for " + word};
 					callback(null, response);
 				}
 			});
 		} else if (exists === 1) { //else if word was not already in the trackedWords set
-			response.push("now tracking " + word);
+			var response = {altResponse: "now tracking " + word};
 			callback(null, response);
 		}
 	});
