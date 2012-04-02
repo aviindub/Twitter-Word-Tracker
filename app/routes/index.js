@@ -23,8 +23,8 @@ exports.user = function(req, res) {
 exports.word = function(req, res) { 
 	var word = req.params.word;
 	//reply.getList calls function in reply_module.js to generate URL/scores list
-	reply.getList(word, function (error, replyString) {
-		var data = {word: word, reply: replyString};
+	reply.getList(word, function (error, reply) {
+		var data = {word: word, reply: reply};
 		res.render('word',data);
 	});
 };
