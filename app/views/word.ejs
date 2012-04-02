@@ -1,8 +1,16 @@
-<div id=database_results>
 <h1><%= word%></h1>
 <ul>
-<%for (var i=0; i<reply.length; i++) { %>
-	<li><%= reply[i]%></li>
+<% if (reply.altResponse) { %>
+	<span class="altResponse"><%= reply.altResponse%></span>
+<% } %>
+<% if (reply.responseUrls) { %>
+	<% var scores = reply.responseScores; %>
+	<% var urls = reply.responseUrls; %>
+	<%for (var i=0; i<scores.length; i++) { %>
+		<li id="li<%= i%>">
+			<span class="score"><%= scores[i]%></span>
+			<span class="url"> <a href="<%= urls[i] %>"><%= urls[i] %></a></span>
+		</li>
+	<% } %>
 <% } %>
 </ul>
-</div>
