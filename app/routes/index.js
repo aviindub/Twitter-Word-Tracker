@@ -16,10 +16,6 @@ exports.index = function(req, res){
   res.render('index', { title: 'Express' })
 };
 
-exports.user = function(req, res) { 
-	res.send('Welcome to the profile of ' + req.params.user + '!'); 
-};
-
 exports.word = function(req, res) { 
 	var word = req.params.word;
 	//reply.getList calls function in reply_module.js to generate URL/scores list
