@@ -1,4 +1,3 @@
-var http = require('http');
 var redis = require('redis');
 var client = redis.createClient();
 
