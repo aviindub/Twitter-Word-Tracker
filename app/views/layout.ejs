@@ -1,9 +1,62 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>The best links</title>
-	</head>
-	<body>
-		<%- body%>
-	</body>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Twitter Link Monster</title>
+	<meta name="" content="">
+	<meta name="" content="">
+
+
+
+	<link href='/stylesheets/style.css' rel="stylesheet">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src='/javascripts/script.js'></script>
+
+
+</head>
+
+<body>
+
+	<div id="header_image">
+	</div>
+	<div id="header">
+		<div id="nav">  <!-- nav is just for style, no need for functionality-->
+			<ul>
+				<a href=''><li>about</li></a>
+				<li><span class="decorative_pink">|</span></li>
+				<a href=''><li>contact</li></a>
+			</ul>
+		</div>
+		<h1>twitter link monster</h1>
+		<h2><span class="decorative_grey">|</span></h2>
+		<h5>searching your favorite words to bring you the top links</h5>
+		<h2> <span class="decorative_grey">|</span></h2>
+		<h6>scoring links while you sleep!</h6>
+
+
+		<form id="reflectedlink"action="/words" method="get">
+			<p>search a word, find the most popular links</p>
+			<input id="searchterm"/>
+			<input type="submit" id="btn" value="Go!"/>
+		</form>
+
+	</div>
+	<div id="page-wrap">
+
+
+		<div id="links">
+			<%- body%>
+		</div>
+
+
+
+
+
+	</div>
+
+
+
+</body>
+
 </html>
